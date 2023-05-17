@@ -1,4 +1,4 @@
-﻿using GrouveStreet.DataBase;
+﻿using GrouveStreet.Database.ContextDb;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,14 +9,14 @@ namespace GrouveStreet.Controllers
     public class RegistrationController : Controller
     {
         // GET: RegistrationController
-        private readonly AppDbContext _context;
-        public RegistrationController(AppDbContext context)
+        private readonly AutoServiceContext _context;
+        public RegistrationController(AutoServiceContext context)
         {
             _context = context;
         }
         public IActionResult RegistrationView()
         {
-            ViewBag.hell = _context.role.ToList();
+            ViewBag.hell = _context.Roles.ToList();
             return View();
         }
 

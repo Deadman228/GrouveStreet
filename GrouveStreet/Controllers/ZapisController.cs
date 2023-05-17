@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using GrouveStreet.Database.ContextDb;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using GrouveStreet.DataBase;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace GrouveStreet.Controllers
@@ -9,30 +10,41 @@ namespace GrouveStreet.Controllers
     
     public class ZapisController : Controller
     {
-        private readonly AppDbContext _context;
-        public ZapisController(AppDbContext context)
+        private readonly AutoServiceContext _context;
+        public ZapisController(AutoServiceContext context)
         {
             _context = context;
         }
         // GET: Zapis
         public IActionResult ZapisView()
         {
-            ViewBag.ku = _context.services.ToList();
+            ViewBag.ku = _context.Services.ToList();
             return View();
         }
         [HttpPost]
-        public IActionResult Zapi(int id, string , Orderr modik)
+        public IActionResult Zapi(string marka, string number,List<int> workType, DateTime date)
         {
-            _context.orderr.Add(new Orderr
+            _context.Orderrs.Add(new Orderr
             {
-                orderid = _context.orderr.Count() + 1,
-                ordersostav = login,
-                status = 1
-
+                Emploer=null,
+                Mark=marka,
+                Status=1,
+                Number=number,
+                Date=date
             });
-
             _context.SaveChanges();
-            return ZapisView();
+            var order = _context.Orderrs.OrderBy(x=>x.Orderid).LastOrDefault(x => x.Number.Equals(number));
+            foreach (var service in workType)
+            {
+                _context.Orderservices.Add(new Orderservice()
+                {
+                    IdOrder = order.Orderid,
+                    IdService = service
+                });
+            }
+            _context.SaveChanges();
+            ViewBag.ku = _context.Services.ToList();
+            return View("ZapisView");
         }
         // GET: Zapis/Details/5
         public ActionResult Details(int id)

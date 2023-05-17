@@ -20,9 +20,9 @@
                 <div>
                     <div class="select" tabindex="1">
                         @{
-                            foreach (var a in (List<GrouveStreet.DataBase.Services>)ViewBag.ku)
+                            foreach (var a in (List<GrouveStreet.Database.ContextDb.Service>)ViewBag.ku)
                             {
-                                <option value="@a.name">@a.name</option>
+                                <option value="@a.Name">@a.Name</option>
                             }
                         }
                     </div>

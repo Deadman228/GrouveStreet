@@ -21,12 +21,15 @@
                     <a class="button-settings">Марка машины</a>
                     <div>
                         <div class="select" tabindex="1">
-                            <input class="selectopt" name="test" type="radio" id="opt1" checked>
-                            <label for="opt1" class="option">Toyota</label>
-                            <input class="selectopt" name="test" type="radio" id="opt2">
-                            <label for="opt2" class="option">Mitsubishi</label>
-                            <input class="selectopt" name="test" type="radio" id="opt3">
-                            <label for="opt3" class="option">Nissan</label>
+
+                            <select name="marka">
+                                <option class="selectopt" checked value="Toyota" />
+                                <label for="opt1" class="option">Toyota</label>
+                                <option class="selectopt" id="opt2" value="Mitsubishi" />
+                                <label for="opt2" class="option">Mitsubishi</label>
+                                <option class="selectopt" id="opt3" value="Nissan" />
+                                <label for="opt3" class="option">Nissan</label>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -34,11 +37,11 @@
                     <a class="button-settings">Тип работы</a>
                     <div>
                         <div class="select" tabindex="1">
-                            <select name="number">
+                            <select name="workType" multiple>
                                 @{
-                                    foreach (var a in (List<GrouveStreet.DataBase.Services>)ViewBag.ku)
+                                    foreach (var a in (List<GrouveStreet.Database.ContextDb.Service>)ViewBag.ku)
                                     {
-                                        <option value="@a.name">@a.name</option>
+                                        <option value="@a.Id">@a.Name</option>
                                     }
                                 }
                             </select>
@@ -49,7 +52,7 @@
                     <a class="button-settings">Номер телефона</a>
                     <div>
                         <div class="textInputWrapper">
-                            <input placeholder="Номер телефона..." type="text" class="textInput">
+                            <input placeholder="Номер телефона..." type="text" name="number" class="textInput">
                         </div>
                     </div>
                 </div>
@@ -59,10 +62,12 @@
             <div class="settings-body-items-left">
                 <a class="button-settings">Дата</a>
                 <div>
-                    <input type="date" name="dateofbirth" id="dateofbirth">
+                    <input type="date" name="date" id="dateofbirth">
                 </div>
             </div>
-            </form>
+
+            <button class="nextpage"> Записаться на услугу</button>
+        </form>
     </div>
 
     <br>
@@ -72,7 +77,6 @@
 
     <div>
 
-        <button class="nextpage"><a href="Html/Zapis.html"> Записаться на услугу</a></button>
     </div>
 
 

@@ -1,4 +1,4 @@
-using GrouveStreet.DataBase;
+using GrouveStreet.Database.ContextDb;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,7 +35,7 @@ namespace GrouveStreet
                 Password = dbPassword
             };
 
-            services.AddDbContext<AppDbContext>(options => options.UseNpgsql(builder.ConnectionString));
+            services.AddDbContext<AutoServiceContext>(options => options.UseNpgsql(builder.ConnectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

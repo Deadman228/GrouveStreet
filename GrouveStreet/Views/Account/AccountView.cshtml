@@ -1,4 +1,11 @@
-﻿<link rel="stylesheet" href="~/css/Account.css">
+﻿@using GrouveStreet.Database.ContextDb
+@model List<Orderr>
+@{ 
+    var orderServices=(List<Orderservice>)ViewBag.OrderServices;
+    var services=(List<Service>)ViewBag.Services;
+    var statuses=(List<Status>)ViewBag.Statuses;
+}
+<link rel="stylesheet" href="~/css/Account.css">
 <body class="containermain">
     <div class="">
         <br>
@@ -12,19 +19,56 @@
         <div class="settings__header">
             <div class="settings__header__text">Заказы</div>
         </div>
+        @foreach (var order in Model)
+        {
+    <form method="post" action="/Account/OrderChangesSave">
         <div class="settings-body-items">
             <div class="settings-body-items-left">
-
-                <a class="button-settings">Заказ номер:</a>
-                <a class="button-settings">Тип работы:</a>
-                <a class="button-settings">Описание работы:</a>
-                <a class="button-settings">Статус работы:</a>
-                <a class="button-settings">Стоимость работы:</a>
+                <input type="hidden" value="@order.Orderid" name="orderId" />
+                <a class="button-settings">Заказ номер:@order.Orderid</a>
+                <a class="button-settings">
+                    Тип работы:<select multiple type="text" name="services">
+                        @foreach (var service in services)
+                        {
+                            if (orderServices.Where(x => x.IdOrder == order.Orderid).Select(x => x.IdService).ToList().Contains(service.Id))
+                            {
+                                <option value="@service.Id" selected>@service.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@service.Id">@service.Name</option>
+                            }
+                        }
+                    </select>
+                </a>
+                <a class="button-settings">
+                    Статус работы:<select type="text" name="status">
+                        @foreach (var status in statuses)
+                        {
+                            if (order.Status == status.Id)
+                            {
+                                <option value="@status.Id" selected>@status.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@status.Id">@status.Name</option>
+                            }
+                        }
+                    </select>
+                </a>
+                @{
+                    var cost = 0;
+                    foreach (var service in orderServices.Where(x => x.IdOrder == order.Orderid))
+                    {
+                        cost += (int)service.IdServiceNavigation.Cost.Value;
+                    }
+                }
+                <a class="button-settings">Стоимость работы:@cost руб.</a>
+                <button>Сохранить изменения</button>
             </div>
-
         </div>
-
-
+    </form>
+        }
     </div>
     </div>
 </body>
