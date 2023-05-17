@@ -1,0 +1,293 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+.image {
+    background: #000;
+}
+
+    .image img {
+        opacity: 0.6;
+    }
+
+/*perehod na stranici*/
+
+
+.nextpage {
+    padding: 20px;
+    font-size: 2em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    background-color: #87CEFA;
+    border-color: black;
+    margin-inline: 50px;
+}
+/*cardpanel*/
+.cardik {
+    width: 190px;
+    height: 254px;
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    border-radius: 20px;
+    transition: all .3s;
+}
+
+.cardik2 {
+    width: 190px;
+    height: 254px;
+    background-color: #1a1a1a;
+    border-radius:;
+    transition: all .2s;
+}
+
+    .cardik2:hover {
+        transform: scale(0.98);
+        border-radius: 20px;
+    }
+
+.cardik:hover {
+    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+}
+/*cardotzovi*/
+.card {
+    --background: #fff;
+    --cardShadow: rgba(32,33,37,.1);
+    --cardShadowHover: rgba(32,33,37,.06);
+    --cardShadowActive: rgba(32,33,37,.55);
+    --cardBorder: #dbdce0;
+    --cardBorderActive: #1a73e8;
+    --textColor: #202125;
+    --linkColor: #1967d2;
+    --ratingColor: #faab00;
+    algin margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+/*HEADER*/
+
+.header {
+    background-color: Black;
+    max-width: 100%;
+    height: 70px;
+    padding: 20px 0;
+    display: flex;
+}
+
+.header-content {
+    margin: 0 auto;
+    width: 1640px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.header-content-container:first-child {
+    padding: 10px 20px 10px 5px;
+}
+
+.header-content-container:nth-child(2) {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 0.5;
+}
+
+.header-content-container:last-child {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 0.05;
+}
+
+.header-content-container-object-logo {
+    color: white;
+    font-size: 3em;
+    margin: auto 0;
+}
+
+.header-content-container-object:first-child {
+    font-size: 2em;
+    margin: auto 0;
+}
+
+.header-content-container-object:nth-child(2) {
+    font-size: 2em;
+    margin: auto 0;
+}
+
+.header-content-container-object:last-child {
+    font-size: 2em;
+    margin: auto 0;
+}
+
+.is-active {
+    border-bottom: 3px solid white;
+}
+
+.header-content-container-object-right {
+    font-size: 2em;
+    margin: auto 0;
+}
+
+.header-content-container-object-text {
+    color: white;
+}
+
+
+.wrap {
+    width: 1640px;
+    margin: 0 auto;
+}
+
+
+.settings__header {
+    margin: 20px 0;
+}
+
+.settings__header__text {
+    color: white;
+    font-size: 3em;
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 3px solid white;
+}
+
+.settings-body-items {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.settings-body-items-left {
+    display: flex;
+    flex-direction: column;
+    border-radius: 67px;
+    background: #87CEFA;
+    border-color: black;
+}
+
+.settings-body-items-right {
+    background-color: gray;
+    display: flex;
+    flex-direction: column;
+    border-radius: 67px;
+    background: #87CEFA;
+    border-color: black;
+}
+
+.button-settings {
+    padding: 20px;
+    font-size: 2em;
+    margin-top: 20px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+}
+
+
+.settings-container {
+    margin-top: 40px;
+}
+
+.settings-container-tables {
+    display: flex;
+}
+
+.settings-container-tables-left {
+    border-radius: 40px;
+    border: 3px solid white;
+    margin: 0 auto;
+    width: 45%;
+}
+
+
+.settings-container-tables-right {
+    border-radius: 40px;
+    border: 3px solid white;
+    margin: 0 auto;
+    width: 45%;
+}
+
+.settings-container-table-main {
+    padding: 20px;
+    border-bottom: 3px solid white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.settings-container-table-row {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}

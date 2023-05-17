@@ -1,0 +1,80 @@
+﻿<link rel="stylesheet" href="~/css/Zapis.css">
+<head>
+    <title></title>
+</head>
+<body class="containermain">
+    <div class="">
+        <br>
+
+        <div class="ImagePhon">
+            <img src="~/imag/i.png" width="600" height="350" class="ImagePhon">
+
+        </div>
+    </div>
+    <div class="wrap">
+        <form method="post" asp-action="Zapi" asp-route-returnurl="@ViewData["https://localhost:44367/Zapis/ZapisView"]">
+            <div class="settings__header">
+                <div class="settings__header__text">Запись на услугу</div>
+            </div>
+            <div class="settings-body-items">
+                <div class="settings-body-items-left">
+                    <a class="button-settings">Марка машины</a>
+                    <div>
+                        <div class="select" tabindex="1">
+                            <input class="selectopt" name="test" type="radio" id="opt1" checked>
+                            <label for="opt1" class="option">Toyota</label>
+                            <input class="selectopt" name="test" type="radio" id="opt2">
+                            <label for="opt2" class="option">Mitsubishi</label>
+                            <input class="selectopt" name="test" type="radio" id="opt3">
+                            <label for="opt3" class="option">Nissan</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="settings-body-items-left">
+                    <a class="button-settings">Тип работы</a>
+                    <div>
+                        <div class="select" tabindex="1">
+                            <select name="number">
+                                @{
+                                    foreach (var a in (List<GrouveStreet.DataBase.Services>)ViewBag.ku)
+                                    {
+                                        <option value="@a.name">@a.name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="settings-body-items-left">
+                    <a class="button-settings">Номер телефона</a>
+                    <div>
+                        <div class="textInputWrapper">
+                            <input placeholder="Номер телефона..." type="text" class="textInput">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="settings-body-items-left">
+                <a class="button-settings">Дата</a>
+                <div>
+                    <input type="date" name="dateofbirth" id="dateofbirth">
+                </div>
+            </div>
+            </form>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div>
+
+        <button class="nextpage"><a href="Html/Zapis.html"> Записаться на услугу</a></button>
+    </div>
+
+
+    </div>
+</body>

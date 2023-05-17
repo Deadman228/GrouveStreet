@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="~/css/zapis.css">
+<body class="containermain">
+    <div class="">
+        <br>
+
+        <div class="ImagePhon">
+            <img src="Images/i.png" width="600" height="350" class="ImagePhon">
+
+        </div>
+    </div>
+    <div class="wrap">
+        <div class="settings__header">
+            <div class="settings__header__text">Запись на услугу</div>
+        </div>
+        <div class="settings-body-items">
+            <div class="settings-body-items-left">
+                <a class="button-settings">Марка машины</a>
+                <div>
+                    <div class="select" tabindex="1">
+                        @{
+                            foreach (var a in (List<GrouveStreet.DataBase.Services>)ViewBag.ku)
+                            {
+                                <option value="@a.name">@a.name</option>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="settings-body-items-left">
+                <a class="button-settings">Тип работы</a>
+                <div>
+                    <div class="select" tabindex="1">
+                        <input class="selectopt" name="testt" type="radio" id="opt4" checked>
+                        <label for="opt4" class="option">Нанесение винила</label>
+                        <input class="selectopt" name="testt" type="radio" id="opt5">
+                        <label for="opt5" class="option">Подбор дисков</label>
+                        <input class="selectopt" name="testt" type="radio" id="opt6">
+                        <label for="opt6" class="option">Техническое обслуживание</label>
+                        <input class="selectopt" name="testt" type="radio" id="opt7">
+                        <label for="opt7" class="option">Керамическое покрытие</label>
+                    </div>
+                </div>
+            </div>
+            <div class="settings-body-items-left">
+                <a class="button-settings">Номер телефона</a>
+                <div>
+                    <div class="textInputWrapper">
+                        <input placeholder="Номер телефона..." type="text" class="textInput">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="settings-body-items-left">
+            <a class="button-settings">Дата</a>
+            <div>
+                <input type="date" name="dateofbirth" id="dateofbirth">
+            </div>
+        </div>
+
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div>
+        <button class="nextpage"><a href="Html/Zapis.html"> Записаться на услугу</a></button>
+    </div>
+
+
+</body>
+</html>
