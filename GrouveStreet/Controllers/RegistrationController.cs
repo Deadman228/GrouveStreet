@@ -1,4 +1,5 @@
 ﻿using GrouveStreet.Database.ContextDb;
+using GrouveStreet.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -87,6 +88,35 @@ namespace GrouveStreet.Controllers
             {
                 return View();
             }
+        }
+        [HttpPost]
+        public ActionResult Register(string firstname, string surname, string patronymic, string login, string password, string passwordChange)
+        {
+            ViewBag.hell = _context.Roles.ToList();
+            if (string.IsNullOrEmpty(firstname) || string.IsNullOrEmpty(surname) || string.IsNullOrEmpty(patronymic) || string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
+            {
+                ViewBag.error="Некоторые поля пустые";
+                return View("RegistrationView");
+            }
+            var user = _context.Users.FirstOrDefault(x => x.Login == login);
+            if (user != null)
+            {
+                ViewBag.error="Такой пользователь уже есть";
+                return View("RegistrationView");
+            }
+            var userCreated = new User()
+            {
+                Familia = surname,
+                Name = firstname,
+                Patronomyc=patronymic,
+                Login = login,
+                Password = password,
+                RoleId = 1
+            };
+            _context.Users.Add(userCreated);
+            _context.SaveChanges();
+            AuthorizedUser.user = (User)_context.Users.FirstOrDefault(x => x.Login == login);
+            return Redirect("/Home/Index");
         }
     }
 }

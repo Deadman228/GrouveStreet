@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using GrouveStreet.Database.ContextDb;
+using GrouveStreet.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 
 namespace GrouveStreet.Controllers
 {
@@ -79,6 +82,24 @@ namespace GrouveStreet.Controllers
             {
                 return View();
             }
+        }
+        [HttpPost]
+        public ActionResult Auth(string login, string password)
+        {
+            GrouveStreet.Database.ContextDb.AutoServiceContext _context = new Database.ContextDb.AutoServiceContext();
+            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
+            {
+                ViewBag.error = "Некоторые поля пустые";
+                return View("AuthorizationView");
+            }
+            var user = _context.Users.FirstOrDefault(x => x.Login == login && x.Password == password);
+            if (user == null)
+            {
+                ViewBag.error = "Пользователь не найден";
+                return View("AuthorizationView");
+            }
+            AuthorizedUser.user = user;
+            return Redirect("/Home/Index");
         }
     }
 }

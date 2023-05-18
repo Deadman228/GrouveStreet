@@ -19,7 +19,6 @@ namespace GrouveStreet.Database.ContextDb
 
         public virtual DbSet<Autopart> Autoparts { get; set; }
         public virtual DbSet<Categorypart> Categoryparts { get; set; }
-        public virtual DbSet<Employer> Employers { get; set; }
         public virtual DbSet<Orderr> Orderrs { get; set; }
         public virtual DbSet<Orderservice> Orderservices { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
@@ -81,38 +80,6 @@ namespace GrouveStreet.Database.ContextDb
                 entity.Property(e => e.Name)
                     .HasColumnType("char")
                     .HasColumnName("name");
-            });
-
-            modelBuilder.Entity<Employer>(entity =>
-            {
-                entity.HasKey(e => e.Idemployer)
-                    .HasName("employer_pkey");
-
-                entity.ToTable("employer");
-
-                entity.Property(e => e.Idemployer)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("idemployer")
-                    .UseIdentityAlwaysColumn();
-
-                entity.Property(e => e.Familia)
-                    .HasColumnType("char")
-                    .HasColumnName("familia");
-
-                entity.Property(e => e.Login).HasColumnName("login");
-
-                entity.Property(e => e.Name)
-                    .HasColumnType("char")
-                    .HasColumnName("name");
-
-                entity.Property(e => e.Patronomyc)
-                    .HasColumnType("char")
-                    .HasColumnName("patronomyc");
-
-                entity.HasOne(d => d.IdemployerNavigation)
-                    .WithOne(p => p.Employer)
-                    .HasForeignKey<Employer>(d => d.Idemployer)
-                    .HasConstraintName("fk_e_u");
             });
 
             modelBuilder.Entity<Orderr>(entity =>
@@ -231,11 +198,15 @@ namespace GrouveStreet.Database.ContextDb
 
                 entity.Property(e => e.Id).UseIdentityAlwaysColumn();
 
-                entity.Property(e => e.Familia).HasColumnType("char");
+                entity.Property(e => e.Familia).HasColumnType("character varying");
 
-                entity.Property(e => e.Name).HasColumnType("char");
+                entity.Property(e => e.Login).HasColumnType("character varying");
 
-                entity.Property(e => e.Patronomyc).HasColumnType("char");
+                entity.Property(e => e.Name).HasColumnType("character varying");
+
+                entity.Property(e => e.Password).HasColumnType("character varying");
+
+                entity.Property(e => e.Patronomyc).HasColumnType("character varying");
 
                 entity.Property(e => e.RoleId).HasColumnName("RoleID");
 
