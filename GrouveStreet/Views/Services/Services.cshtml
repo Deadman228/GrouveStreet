@@ -1,0 +1,67 @@
+﻿@using GrouveStreet.Database.ContextDb
+@model List<Service>
+@{
+    Layout = "_Layout";
+}
+@if (ViewBag.result != null) {
+    <div class="box">
+            @ViewBag.result
+        <br />
+    </div>
+    <br/>
+}
+Добавление услуги
+<form method="post" action="/Services/AddService">
+    <div class="box">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>Название услуги</td>
+                    <td><input type="text" name="name" /></td>
+                </tr>
+                <tr>
+                    <td>Описание услуги</td>
+                    <td><input type="text" name="description" /></td>
+                </tr>
+                <tr>
+                    <td>Cтоимость услуги</td>
+                    <td><input type="number" name="cost" /></td>
+                </tr>
+            </tbody>
+        </table>
+        <button>Добавить услугу</button>
+    </div>
+</form>
+<br />
+Редактирование услуги
+@foreach (var service in Model)
+{
+    
+<div class="box">
+    <form method="post" action="/Services/EditService">
+        <input type="hidden" value="@service.Id" name="serviceId" />
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>Название услуги</td>
+                    <td><input type="text" value="@service.Name" name="name" /></td>
+                </tr>
+                <tr>
+                    <td>Описание услуги</td>
+                    <td><input type="text" value="@service.Description" name="description" /></td>
+                </tr>
+                <tr>
+                    <td>Cтоимость услуги</td>
+                    <td><input type="number" value="@service.Cost" name="cost" /></td>
+                </tr>
+            </tbody>
+        </table>
+        <button>Сохранить изменения</button>
+    </form>
+    <form method="post" action="/Services/ServiceRemove">
+        <input type="hidden" value="@service.Id" name="serviceId" />
+        <button>Удалить услугу</button>
+    </form>
+</div>
+    <br />
+}

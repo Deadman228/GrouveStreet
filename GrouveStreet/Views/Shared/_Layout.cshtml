@@ -1,24 +1,67 @@
-﻿<!DOCTYPE html>
+﻿@using GrouveStreet.Models
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title></title>
-    <a id="logoname" class="logoname">4H1M3</a>
-    <button class="nextpage">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Zapis" asp-action="ZapisView">Услуги</a>
-    </button>
-    <button class="nextpage">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Zapis" asp-action="ZapisView">Автозапчасти</a>
-    </button>
-    <button class="nextpage">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Authorization" asp-action="AuthorizationView">Личный кабинет</a>
-    </button>
+    <style>
+        .box{
+            padding:5px;
+            height:auto;
+            width:auto;
+            border:2px solid black;
+        }
+    </style>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-grid.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-grid.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 </head>
 <body>
-
+    <a id="logoname" class="logoname">4H1M3</a>
+    @if (AuthorizedUser.user != null && AuthorizedUser.user.RoleId == 1)
+    {
+        <button class="nextpage">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Zapis" asp-action="ZapisView">Записаться на услуги</a>
+        </button>
+    }
+    @if (AuthorizedUser.user != null && AuthorizedUser.user.RoleId == 2)
+    {
+        <button class="nextpage">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Services" asp-action="Index">Услуги</a>
+        </button>
+    }
+    @if (AuthorizedUser.user != null && AuthorizedUser.user.RoleId == 2)
+    {
+        <button class="nextpage">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="AccountView">Заказы</a>
+        </button>
+    }
+    @if (AuthorizedUser.user != null && AuthorizedUser.user.RoleId == 3)
+    {
+        <button class="nextpage">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="WorkerZapises">Заказы в работе</a>
+        </button>
+    }
+    @if (AuthorizedUser.user != null && AuthorizedUser.user.RoleId == 2)
+    {
+        <button class="nextpage">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Zapis" asp-action="ZapisView">Автозапчасти</a>
+        </button>
+    }
+    <button class="nextpage">
+        <a class="nav-link text-dark" asp-area="" asp-controller="LK" asp-action="Index">Личный кабинет</a>
+    </button>
+    <button class="nextpage">
+        <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Выйти</a>
+    </button>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

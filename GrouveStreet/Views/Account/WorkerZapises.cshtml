@@ -6,10 +6,17 @@
     var services = (List<Service>)ViewBag.Services;
     var statuses = (List<Status>)ViewBag.Statuses;
 }
+@if (ViewBag.result != null)
+{
+    <div class="box">
+        @ViewBag.result
+    </div>
+    <br/>
+}
 @foreach (var order in Model)
 {
     <div class="box">
-        <form method="post" action="/Account/OrderChangesSave">
+        <form method="post" action="/Account/ChangeOrderStatusWorker">
             <input type="hidden" value="@order.Orderid" name="orderId" />
             <table class="table">
 
@@ -21,19 +28,10 @@
                     <tr>
                         <td>Тип работы</td>
                         <td>
-                            <select multiple type="text" name="services">
-                                @foreach (var service in services)
-                                {
-                                    if (orderServices.Where(x => x.IdOrder == order.Orderid).Select(x => x.IdService).ToList().Contains(service.Id))
-                                    {
-                                        <option value="@service.Id" selected>@service.Name</option>
-                                    }
-                                    else
-                                    {
-                                        <option value="@service.Id">@service.Name</option>
-                                    }
-                                }
-                            </select>
+                            @for (int i = 0; i < orderServices.Where(x => x.IdOrder == order.Orderid).ToList().Count; i++)
+                            {
+                                <span>@(i+1).@orderServices.Where(x => x.IdOrder == order.Orderid).ToList()[i].IdServiceNavigation.Name</span><br />
+                            }
                         </td>
                     </tr>
                     <tr>
@@ -58,10 +56,6 @@
                         <td>Марка авто</td>
                         <td>@order.Mark</td>
                     </tr>
-                    <tr>
-                        <td>Номер телефона клиента</td>
-                        <td>@order.Number</td>
-                    </tr>
                     @{
                         var cost = 0;
                         foreach (var service in orderServices.Where(x => x.IdOrder == order.Orderid))
@@ -75,15 +69,7 @@
                     </tr>
                 </tbody>
             </table>
-            <button>Сохранить изменения</button>
-        </form>
-        <form method="post" action="/Account/OrderRemove">
-            <input type="hidden" value="@order.Orderid" name="orderId" />
-            <button>Удалить заказ</button>
-        </form>
-        <form method="post" action="/Account/ChekCreate">
-            <input type="hidden" value="@order.Orderid" name="orderId" />
-            <button>Сформировать выходной документ</button>
+            <button>Изменить статус</button>
         </form>
     </div>
     <br />

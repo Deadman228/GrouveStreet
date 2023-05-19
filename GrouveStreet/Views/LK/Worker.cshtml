@@ -1,0 +1,107 @@
+﻿@model GrouveStreet.Database.ContextDb.User
+@using GrouveStreet.Database.ContextDb
+@using Microsoft.EntityFrameworkCore
+@{
+    Layout = "_Layout";
+    var orders = (List<Orderr>)ViewBag.orders;
+    var orderServices = (List<Orderservice>)ViewBag.orderServices;
+}
+Мои данные
+<div class="box">
+    <form method="post" action="/LK/ChangeUserData">
+        @if (ViewBag.error != null)
+        {
+            <span>@ViewBag.error</span>
+        }
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>Имя</td>
+                    <td><input type="text" value="@Model.Name" name="name" /></td>
+                </tr>
+                <tr>
+                    <td>Фамилия</td>
+                    <td><input type="text" value="@Model.Familia" name="surname" /></td>
+                </tr>
+                <tr>
+                    <td>Отчество</td>
+                    <td><input type="text" value="@Model.Patronomyc" name="patronymic" /></td>
+                </tr>
+                <tr>
+                    <td>Номер телефона</td>
+                    <td><input type="number" value="@Model.Phone" name="phone" /></td>
+                </tr>
+                <tr>
+                    <td>Логин</td>
+                    <td><input type="text" value="@Model.Login" name="login" /></td>
+                </tr>
+                <tr>
+                    <td>Пароль</td>
+                    <td><input type="text" value="@Model.Password" name="password" /></td>
+                </tr>
+                <tr>
+                    <td>Должность</td>
+                    <td>Техник</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button>Сохранить изменения</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+@if (orders != null)
+{
+    <span>Мои завершенные заказы</span>
+    @foreach (var order in orders)
+    {
+        <div class="box">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>
+                            Номер заказа
+                        </td>
+                        <td>
+                            Дата заказа
+                        </td>
+                        <td>
+                            Статус
+                        </td>
+                        <td>
+                            Марка авто
+                        </td>
+                        <td>
+                            Услуги
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            @order.Orderid
+                        </td>
+                        <td>
+                            @order.Date.Value.ToShortDateString();
+                        </td>
+                        <td>
+                            @order.StatusNavigation.Name
+                        </td>
+                        <td>
+                            @order.Mark
+                        </td>
+                        <td>
+                            @for (int i = 0; i < orderServices.Where(x => x.IdOrder == order.Orderid).ToList().Count; i++)
+                            {
+                                <span>@(i+1).@orderServices.Where(x => x.IdOrder == order.Orderid).ToList()[i].IdServiceNavigation.Name</span><br />
+                            }
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br />
+    }
+}

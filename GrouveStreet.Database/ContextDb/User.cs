@@ -17,7 +17,7 @@ namespace GrouveStreet.Database.ContextDb
         public string Familia { get; set; }
         public string Patronomyc { get; set; }
         public long? RoleId { get; set; }
-        public short? Phone { get; set; }
+        public string Phone { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
 

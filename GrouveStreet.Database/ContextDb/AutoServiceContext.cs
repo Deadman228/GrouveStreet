@@ -208,6 +208,8 @@ namespace GrouveStreet.Database.ContextDb
 
                 entity.Property(e => e.Patronomyc).HasColumnType("character varying");
 
+                entity.Property(e => e.Phone).HasColumnType("character varying");
+
                 entity.Property(e => e.RoleId).HasColumnName("RoleID");
 
                 entity.HasOne(d => d.Role)
